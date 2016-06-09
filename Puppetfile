@@ -2,6 +2,8 @@ mod 'scriptura',
   :git => 'https://github.com/cegeka/puppet-scriptura'
 mod 'yum',
   :git => 'https://github.com/cegeka/puppet-yum'
+mod 'sunjdk',
+  :git => 'https://github.com/cegeka/puppet-sunjdk'
 mod 'profile',
   :git => 'git@github.com:cegeka/puppet-profile.git'
 mod 'cegekarepos',
