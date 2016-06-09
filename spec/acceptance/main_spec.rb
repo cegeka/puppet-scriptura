@@ -5,8 +5,8 @@ describe 'puppet::main::settings' do
   describe 'running puppet code' do
     it 'should work with no errors' do
       pp = <<-EOS
-        profile::iac::java_jdk
-        profile::iac::java::alternatives
+        include profile::iac::java_jdk
+        include profile::iac::java::alternatives
 
         $scriptura_server               = hiera_hash('profile::iac::scriptura::server',{})
         $scriptura_additional_packages  = hiera_hash('profile::iac::scriptura::additional_packages',{})
