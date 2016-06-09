@@ -1,5 +1,7 @@
 mod 'scriptura',
   :git => 'https://github.com/cegeka/puppet-scriptura'
+mod 'stdlib',
+  :git => 'https://github.com/cegeka/puppet-stdlib'
 mod 'yum',
   :git => 'https://github.com/cegeka/puppet-yum'
 mod 'alternatives',
