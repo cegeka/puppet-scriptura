@@ -14,11 +14,11 @@
 define scriptura::server::config::alias(
   $version = undef,
   $type = undef,
-  $name = undef
+  $alias_name = undef
 ) {
 
-  if ($type == undef or $name == undef) {
-    fail("Scriptura::Server::Config::Alias[${title}]: parameters version, type and name must be defined")
+  if ($type == undef or $alias_name == undef) {
+    fail("Scriptura::Server::Config::Alias[${title}]: parameters version, type and alias_name must be defined")
   }
 
   $scriptura_version_withoutrelease = regsubst($version, '^(\d+\.\d+\.\d+)-\d+\..*$', '\1')
@@ -30,10 +30,10 @@ define scriptura::server::config::alias(
     incl    => "${scriptura_config_location}/configuration.xml",
     context => "/files/${scriptura_config_location}/configuration.xml",
     changes => [
-      "set config/aliases/${title}/alias-name/#text ${name}",
+      "set config/aliases/${title}/alias-name/#text ${alias_name}",
       "set config/aliases/${title}/alias-type/#text ${type}"
     ],
-    onlyif  => "match config/aliases/${title}/alias-name/#text[. = \"${name}\"] size == 0"
+    onlyif  => "match config/aliases/${title}/alias-name/#text[. = \"${alias_name}\"] size == 0"
   }
 
 }
