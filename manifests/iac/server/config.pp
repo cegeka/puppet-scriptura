@@ -54,13 +54,15 @@ define scriptura::iac::server::config(
     require => File[$scriptura_settings_location]
   }
 
-  file { "${scriptura_config_location}/configuration.xml":
-    ensure  => file,
-    owner   => 'scriptura',
-    group   => 'scriptura',
-    content => template("${module_name}/iac/server/configuration-${type}.xml.erb"),
-    replace => false,
-    require => File[$scriptura_config_location]
+  if $scriptura_major_minor_version == '8.0' {
+    file { "${scriptura_config_location}/configuration.xml":
+      ensure  => file,
+      owner   => 'scriptura',
+      group   => 'scriptura',
+      content => template("${module_name}/iac/server/configuration-${type}.xml.erb"),
+      replace => false,
+      require => File[$scriptura_config_location]
+    }
   }
 
   if $scriptura_config_xml {
@@ -72,7 +74,7 @@ define scriptura::iac::server::config(
       ensure  => file,
       owner   => 'scriptura',
       group   => 'scriptura',
-      content => template("${module_name}/iac/server/ScripturaStart${initcap_type}Server.ini.erb"),
+      content => template("${module_name}/iac/server/ScripturaStart${initcap_type}Server-${scriptura_major_minor_version}.ini.erb"),
       replace => true,
       require => File[$scriptura_config_location]
     }
