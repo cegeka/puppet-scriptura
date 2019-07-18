@@ -18,7 +18,7 @@
 #
 class scriptura::iac {
 
-  $data_dir = hiera_hash('scriptura::iac::data_dir',{})
+  $data_dir = lookup({ 'name' =>'scriptura::iac::data_dir', 'default_value' => {} , merge => hash })
 
   create_resources(file,$data_dir)
 

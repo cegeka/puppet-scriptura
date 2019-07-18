@@ -4,10 +4,10 @@ class scriptura::iac::management::backenddb (
 
   class { 'postgresql::server': }
 
-  $database = hiera_hash('scriptura::iac::management::backenddb::database',{})
-  $database_grant = hiera_hash('scriptura::iac::management::backenddb::database_grant',{})
-  $role = hiera_hash('scriptura::iac::management::backenddb::role',{})
-  $pg_hba_rule = hiera_hash('scriptura::iac::management::backenddb::pg_hba_rule',{})
+  $database = lookup({ 'name' =>'scriptura::iac::management::backenddb::database', 'default_value' => {} , merge => hash })
+  $database_grant = lookup({ 'name' =>'scriptura::iac::management::backenddb::database_grant', 'default_value' => {} , merge => hash })
+  $role = lookup({ 'name' =>'scriptura::iac::management::backenddb::role', 'default_value' => {} , merge => hash })
+  $pg_hba_rule = lookup({ 'name' =>'scriptura::iac::management::backenddb::pg_hba_rule', 'default_value' => {} , merge => hash })
 
   create_resources('postgresql::server::db',$database)
   create_resources('postgresql::server::database_grant',$database_grant)

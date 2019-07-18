@@ -14,7 +14,7 @@ define scriptura::server::config::element(
   $value = undef
 ) {
 
-  if ($type == undef or $name == undef) {
+  if ($version == undef or $value == undef) {
     fail("Scriptura::Server::Config::Element[${title}]: parameters version and value must be defined")
   }
 

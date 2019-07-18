@@ -34,9 +34,9 @@ define scriptura::iac::server::config(
   $scriptura_major_minor_version = regsubst($scriptura_version_withoutrelease, '^(\d+\.\d+).\d+$', '\1')
   notice("Scriptura engage ${type} major and minor version: ${scriptura_major_minor_version}")
 
-  $scriptura_settings_location = "/${data_dir}/${type}/scriptura-${scriptura_major_minor_version}"
-  $scriptura_config_location = "/${data_dir}/${type}/scriptura-${scriptura_major_minor_version}/configuration"
-  $scriptura_config_xml = hiera_hash("scriptura::iac::server::config::xml::${type}",{})
+  $scriptura_settings_location = "${data_dir}/${type}/scriptura-${scriptura_major_minor_version}"
+  $scriptura_config_location = "${data_dir}/${type}/scriptura-${scriptura_major_minor_version}/configuration"
+  $scriptura_config_xml = lookup({ 'name' =>"scriptura::iac::server::config::xml::${type}", 'default_value' => {} , merge => hash })
   $initcap_type = capitalize($type)
 
   file { $scriptura_settings_location :
