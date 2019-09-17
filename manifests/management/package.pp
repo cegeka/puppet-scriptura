@@ -9,10 +9,10 @@ class scriptura::management::package(
 
   case $versionlock {
     true: {
-      packagelock { "scriptura-engage-management": }
+      yum::versionlock { "0:scriptura-engage-management-${version}.*": }
     }
     false: {
-      packagelock { "scriptura-engage-management": ensure => absent }
+      yum::versionlock { "0:scriptura-engage-managementi-${version}.*": ensure => absent }
     }
     default: { fail('Class[Scriptura::Management::Package]: parameter versionlock must be true or false')}
   }

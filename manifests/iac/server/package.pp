@@ -20,10 +20,10 @@ define scriptura::iac::server::package(
 
   case $versionlock {
     true: {
-      packagelock { "scriptura-engage-${type}": }
+      yum::versionlock { "0:scriptura-engage-${type}-${version}.*": }
     }
     false: {
-      packagelock { "scriptura-engage-${type}": ensure => absent }
+      yum::versionlock { "0:scriptura-engage-${type}-${version}.*": ensure => absent }
     }
     default: { fail('Class[Scriptura::Iac::Server::Package]: parameter versionlock must be true or false')}
   }

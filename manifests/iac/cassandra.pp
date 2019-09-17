@@ -12,12 +12,12 @@ define scriptura::iac::cassandra(
 
   case $versionlock {
     true: {
-      packagelock { 'scriptura-cassandra':
+      yum::versionlock { "0:scriptura-cassandra-${version}.*":
         require => Package['scriptura-cassandra']
       }
     }
     false: {
-      packagelock { 'scriptura-cassandra':
+      yum::versionlock { "0:scriptura-cassandra-${version}.*":
         ensure  => absent,
         require => Package['scriptura-cassandra']
       }
